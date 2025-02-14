@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: monaco, Consolas, Lucida Console, monospace; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin: 0;
+            opacity: 0; /* Hide content initially */
+            transition: opacity 1s ease-in-out; /* Smooth fade-in effect */
+        }
+
+        #preloader {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background: black;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            z-index: 9999;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        #yes {
+            background-color: red;
+            color: white;
+        }
+
+        #no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #response {
+            padding-top: 50px; /* Adjust this value to move the text down */
+        }
+    </style>
+</head>
+<body id="body">
+    <!-- Preloader -->
+    <div id="preloader">Loading...</div>
+
+    <div class="container" id="question">
+        <h1>Will you be my Valentine? 💖</h1>
+        <button id="yes" onclick="showNextScreen()">Yes</button>
+        <button id="no" onmouseover="moveButton()">No</button>
+    </div>
+    
+    <div class="container hidden" id="response">
+        <h1>Yay! 🥰 You made my day! 💕</h1>
+        <div>  For You
+
+            Looking at these pictures, I realize how much you mean to me. Every moment, every call, every memory—we’ve built something truly special.
+            
+            That night on January 28, I might have been drunk, but what I said was the most honest thing ever. I love you, and this relationship means everything to me.
+            
+            I know I don’t always say things the best way, but I just want you to know—I’m always here, always choosing you. 
+            
+        </div>
+        <div>
+            ~ shankar
+            your valentine xoxo
+            lots of cuddles & kisses.
+        </div>
+    </div>
+
+    <script>
+        // Wait until the background image is fully loaded
+        let bgImage = new Image();
+        bgImage.src = "./image.jpg";  // Ensure it's the correct path
+
+        bgImage.onload = function () {
+            document.getElementById("body").style.backgroundImage = `url('./image.jpg')`;
+            document.getElementById("preloader").style.display = "none"; // Hide preloader
+            document.getElementById("body").style.opacity = "1"; // Show content with fade-in
+        };
+
+        function moveButton() {
+            let noButton = document.getElementById("no");
+            let x = Math.random() * (window.innerWidth - 100);
+            let y = Math.random() * (window.innerHeight - 50);
+            noButton.style.left = `${x}px`;
+            noButton.style.top = `${y}px`;
+        }
+
+        function showNextScreen() {
+            document.getElementById("question").classList.add("hidden");
+            document.getElementById("response").classList.remove("hidden");
+        }
+    </script>
+</body>
+</html>
